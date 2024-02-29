@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_6/screens/places.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final ColorScheme colorScheme = ColorScheme.fromSeed(
@@ -8,7 +9,7 @@ final ColorScheme colorScheme = ColorScheme.fromSeed(
     background: const Color.fromARGB(255, 99, 8, 246));
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child:  MyApp()));
 }
 
 class MyApp extends StatelessWidget {
