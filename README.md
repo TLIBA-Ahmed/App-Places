@@ -1,4 +1,4 @@
-# flutter_application_6
+# App Places
 
 A new Flutter project.
 
