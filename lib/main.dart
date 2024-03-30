@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData().copyWith(
           colorScheme: colorScheme,
-          useMaterial3: true,
           scaffoldBackgroundColor: colorScheme.background,
           textTheme: GoogleFonts.ubuntuCondensedTextTheme().copyWith(
             titleSmall:
