@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 
 class LocationInput extends StatefulWidget {
   const LocationInput({super.key});
@@ -37,6 +39,27 @@ class _LocationInputState extends State<LocationInput> {
       _isGettingLocation = true;
     });
     locationData = await location.getLocation();
+    final position = await Geolocator.getCurrentPosition();
+    final latitude = position.latitude;
+    final longitude = position.longitude;
+
+    final map = FlutterMap(
+      options: MapOptions(
+          initialCenter: LatLng(latitude, longitude), initialZoom: 15.0),
+      children: [
+        TileLayer(
+          urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        ),
+        MarkerLayer(
+          markers: [
+            Marker(
+              point: LatLng(latitude, longitude),
+              child: const Icon(Icons.location_on),
+            ),
+          ],
+        ),
+      ],
+    );
 
     setState(() {
       _isGettingLocation = false;
